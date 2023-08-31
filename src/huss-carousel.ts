@@ -93,7 +93,6 @@ export class HussCarousel extends LitElement {
   protected override firstUpdated(
     _changedProperties: PropertyValueMap<any> | Map<PropertyKey, unknown>
   ): void {
-    console.log(this._slides, _changedProperties);
     this.sliceArray(this._slides as Element[], this.elementsPerNestedArray);
   }
 

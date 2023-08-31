@@ -35,10 +35,15 @@ export const carouselStyles = css `
     block-size: var(--mobileHeight);
     position: relative;
     overflow: hidden;
-    @media (width > 48rem) {
+  }
+
+  @media (width > 560px) {
+    .huss-carousel {
       block-size: var(--tabletHeight);
     }
-    @media (width > 70rem) {
+  }
+  @media (width > 960px) {
+    .huss-carousel {
       block-size: var(--desktopHeight);
     }
   }
