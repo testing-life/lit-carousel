@@ -15,11 +15,17 @@
     </style>
   </head>
   <body>
-    <huss-carousel>
-      <div class="huss-carousel__item">This is child content</div>
-      <div class="huss-carousel__item">This is child content 2</div>
-      <!-- <p slot="autoplayStartIcon">>></p>
-      <p slot="autoplayStopIcon">X</p> -->
+    <huss-carousel slideDelay="2500">
+      <div slot="slides" class="huss-carousel__item">This is child content</div>
+      <div slot="slides" class="huss-carousel__item">
+        This is child content 2
+      </div>
+      <p slot="autoplayStartIcon">>></p>
+      <p slot="autoplayStopIcon">X</p>
+      <p slot="playPauseIcon">x</p>
+      <p slot="playStartIcon">></p>
+      <p slot="nextIcon">=></p>
+      <p slot="prevIcon"><=</p>
     </huss-carousel>
   </body>
 </html>

@@ -5,7 +5,13 @@
  */
 
 import {LitElement, html, css, nothing, PropertyValueMap} from 'lit';
-import {customElement, property, queryAll, state} from 'lit/decorators.js';
+import {
+  customElement,
+  property,
+  queryAll,
+  queryAssignedElements,
+  state,
+} from 'lit/decorators.js';
 import {carouselStyles} from './huss-carousel-styles';
 import {
   Device,
@@ -34,11 +40,14 @@ enum CarouselType {
 export class HussCarousel extends LitElement {
   static override styles = [carouselStyles];
 
+  @queryAssignedElements({slot: 'slides', selector: 'div'})
+  _slides!: Array<HTMLElement>;
+
   @property()
   variant: CarouselType = CarouselType.Image;
 
   @property()
-  slideDelay: number = 5500;
+  slideDelay: string = '5500';
 
   @state()
   protected currentSlide: number = 0;
@@ -61,18 +70,12 @@ export class HussCarousel extends LitElement {
     touchEnd: 0,
   };
 
-  private get _slottedChildren() {
-    const slot = this.shadowRoot?.querySelector('slot');
-    return slot?.assignedElements({flatten: true});
-  }
-
   override connectedCallback(): void {
     window.addEventListener(
       'resize',
       throttle(() => this.handleElemsPerSlide(), 250)
     );
     super.connectedCallback();
-    // console.log(this.slides, this._slottedChildren);
     // if (this.variant === CarouselType.Teaser) {
     //   this.handleElemsPerSlide();
     //   if (this.slides[0].firstElementChild?.classList.contains('huss-events-teaser__teaser')) {
@@ -90,11 +93,8 @@ export class HussCarousel extends LitElement {
   protected override firstUpdated(
     _changedProperties: PropertyValueMap<any> | Map<PropertyKey, unknown>
   ): void {
-    console.log(this._slottedChildren, _changedProperties);
-    this.sliceArray(
-      this._slottedChildren as Element[],
-      this.elementsPerNestedArray
-    );
+    console.log(this._slides, _changedProperties);
+    this.sliceArray(this._slides as Element[], this.elementsPerNestedArray);
   }
 
   private handleElemsPerSlide() {
@@ -113,13 +113,13 @@ export class HussCarousel extends LitElement {
         elementsPerNestedArray = 1;
         break;
     }
-    this.sliceArray(this._slottedChildren as Element[], elementsPerNestedArray);
+    this.sliceArray(this._slides as Element[], elementsPerNestedArray);
   }
 
   private sliceArray(nodeList: Element[], elemsPerArray: number) {
     const slidesArray = Array.from(nodeList);
     this.currentRecords = splitArrayIntoNestedArray(slidesArray, elemsPerArray);
-    if (this._slottedChildren?.length) {
+    if (this._slides?.length) {
       this.lastSlide = this.currentRecords.length - 1;
     }
   }
@@ -147,7 +147,7 @@ export class HussCarousel extends LitElement {
   private play() {
     this.sliderInterval = setInterval(() => {
       this.nextSlideHandler();
-    }, this.slideDelay);
+    }, parseInt(this.slideDelay));
   }
 
   private pause() {
@@ -210,19 +210,13 @@ export class HussCarousel extends LitElement {
             class="huss-button--icon huss-carousel__button"
             @click="${this.previousSlideHandler}"
           >
-            <huss-icon
-              class="huss-button--icon__image"
-              name="chevron-left"
-            ></huss-icon>
+            <slot class="huss-button--icon__image" name="prevIcon"></slot>
           </button>
           <button
             class="huss-button--icon huss-carousel__button"
             @click="${this.nextSlideHandler}"
           >
-            <huss-icon
-              class="huss-button--icon__image"
-              name="chevron-right"
-            ></huss-icon>
+            <slot class="huss-button--icon__image" name="nextIcon"></slot>
           </button>
         </div>
         <div
@@ -234,20 +228,30 @@ export class HussCarousel extends LitElement {
             class="huss-button--icon huss-carousel__button"
             @click="${this.toggleAutoplay}"
           >
-            <huss-icon
-              class="huss-button--icon__image"
-              name="${this.isAutoplaying ? 'autoplay-stop' : 'autoplay'}"
-            ></huss-icon>
+            ${this.isAutoplaying
+              ? html`<slot
+                  class="huss-button--icon__image"
+                  name="autoplayStopIcon"
+                ></slot>`
+              : html`<slot
+                  class="huss-button--icon__image"
+                  name="autoplayStartIcon"
+                ></slot>`}
           </button>
           <button
             class="huss-button--icon huss-carousel__button"
             @click="${this.togglePlay}"
             disabled=${!this.isAutoplaying || nothing}
           >
-            <huss-icon
-              class="huss-button--icon__image"
-              name="${this.sliderInterval ? 'pause' : 'play'}"
-            ></huss-icon>
+            ${this.sliderInterval
+              ? html`<slot
+                  class="huss-button--icon__image"
+                  name="playPauseIcon"
+                ></slot>`
+              : html`<slot
+                  class="huss-button--icon__image"
+                  name="playStartIcon"
+                ></slot>`}
           </button>
         </div>
         <ul class="huss-carousel">
@@ -285,7 +289,7 @@ export class HussCarousel extends LitElement {
               })
             : nothing}
         </ul>
-        <slot> </slot>
+        <slot name="slides"> </slot>
       </div>
     `;
   }
