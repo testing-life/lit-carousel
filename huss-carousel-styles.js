@@ -1,19 +1,36 @@
-import { css } from "lit";
+import { css } from 'lit';
 export const carouselStyles = css `
-.conti-air-carousel--wrapper {
+  :host {
+    --mobileHeight: 275px;
+    --tabletHeight: 369px;
+    --desktopHeight: 639px;
+    --dotColour: purple;
+    --activeDotColour: goldenrod;
+    --focusedDotColour: green;
+    --hoveredDotColour: yellow;
+  }
+
+  :host ul,
+  :host ol {
+    padding: 0;
+    margin: 0;
+  }
+
+  :host li {
+    list-style-type: none;
+  }
+
+  .huss-carousel--wrapper {
     position: relative;
   }
-  
-  conti-air-carousel[variant='teaser'] {
+
+  huss-carousel[variant='teaser'] {
     --teasersHeight: 480px;
     display: block;
     padding-block-end: 55px;
   }
-  
-  .conti-air-carousel {
-    --mobileHeight: 275px;
-    --tabletHeight: 369px;
-    --desktopHeight: 639px;
+
+  .huss-carousel {
     inline-size: 100%;
     block-size: var(--mobileHeight);
     position: relative;
@@ -25,8 +42,8 @@ export const carouselStyles = css `
       block-size: var(--desktopHeight);
     }
   }
-  
-  .conti-air-carousel__slide {
+
+  .huss-carousel__slide {
     position: absolute;
     inset-inline-start: 0;
     inset-inline-end: 0;
@@ -35,32 +52,35 @@ export const carouselStyles = css `
     touch-action: pan-x;
     display: flex;
     gap: 24px;
-  
-    & > * {
-      flex: 1;
-    }
-  
-    .conti-air-carousel__item,
-    img,
-    video {
-      inline-size: 100%;
-      block-size: 100%;
-    }
-  
-    & > img {
-      object-fit: contain;
-    }
   }
-  
-  .conti-air-carousel--has-teasers .conti-air-carousel--flex-less .conti-air-carousel__item {
-      flex: 0;
-    & .conti-air-events-teaser__teaser { 
-      inline-size: 368px;
-    }  
+
+  .huss-carousel__slide > * {
+    flex: 1;
   }
-  
-  
-  .conti-air-carousel__dots {
+
+  .huss-carousel__item,
+  .huss-carousel__slide img,
+  .huss-carousel__slide video {
+    inline-size: 100%;
+    block-size: 100%;
+  }
+
+  .huss-carousel__slide > img {
+    object-fit: contain;
+  }
+
+  .huss-carousel--has-teasers .huss-carousel--flex-less .huss-carousel__item {
+    flex: 0;
+  }
+
+  .huss-carousel--has-teasers
+    .huss-carousel--flex-less
+    .huss-carousel__item
+    .huss-events-teaser__teaser {
+    inline-size: 368px;
+  }
+
+  .huss-carousel__dots {
     display: flex;
     justify-content: center;
     position: absolute;
@@ -71,8 +91,8 @@ export const carouselStyles = css `
     line-height: 1;
     gap: 10px;
   }
-  
-  .conti-air-carousel__dot-btn {
+
+  .huss-carousel__dot-btn {
     padding: 0;
     block-size: 30px;
     display: inline-flex;
@@ -80,39 +100,37 @@ export const carouselStyles = css `
     align-items: center;
     background: transparent;
     border: none;
-  
-    &:hover,
-    &:focus {
-      cursor: pointer;
-    }
-  
-    &:focus-visible {
-      outline: none;
-      border-radius: 2px;
-      box-shadow: 0 0 0 1px var(--black);
-    }
-  
-    &:after {
-      content: '';
-      inline-size: 10px;
-      block-size: 10px;
-      background: var(--grey4);
-      border-radius: 50%;
-    }
-  
-    &:hover:after {
-      background: var(--grey4);
-    }
   }
-  
-  .conti-air-carousel__dot-btn--is-active {
-    &:after {
-      content: '';
-      background: var(--grey2);
-    }
+
+  .huss-carousel__dot-btn:hover,
+  .huss-carousel__dot-btn:focus {
+    cursor: pointer;
   }
-  
-  .conti-air-carousel__slide-controls {
+
+  .huss-carousel__dot-btn:focus-visible {
+    outline: none;
+    border-radius: 2px;
+    box-shadow: 0 0 0 1px var(--black);
+  }
+
+  .huss-carousel__dot-btn:after {
+    content: '';
+    inline-size: 10px;
+    block-size: 10px;
+    background: var(--grey4, grey);
+    border-radius: 50%;
+  }
+
+  .huss-carousel__dot-btn:hover:after {
+    background: var(--grey4, black);
+  }
+
+  .huss-carousel__dot-btn--is-active:after {
+    content: '';
+    background: var(--grey2, pink);
+  }
+
+  .huss-carousel__slide-controls {
     position: absolute;
     z-index: 1;
     inset-inline-start: 0;
@@ -122,62 +140,62 @@ export const carouselStyles = css `
     inset-block-start: 50%;
     transform: translateY(-50%);
     pointer-events: none;
-  
-    .conti-air-carousel__button {
-      pointer-events: all;
-    }
   }
-  
-  .conti-air-carousel__play-controls {
+
+  .huss-carousel__slide-controls .huss-carousel__button {
+    pointer-events: all;
+  }
+
+  .huss-carousel__play-controls {
     position: absolute;
     inset-inline-start: 20px;
     inset-block-end: 20px;
     z-index: 1;
   }
-  
-  .conti-air-carousel__button {
-    background: var(--grey5);
+
+  .huss-carousel__button {
+    background: var(--grey5, blue);
   }
-  
-  .conti-air-carousel--has-teasers {
-    .conti-air-carousel {
-      block-size: var(--teasersHeight);
-    }
-  
-    .conti-air-carousel__play-controls {
-      display: none;
-    }
-  
-    .conti-air-carousel__slide {
-      gap: 15px;
-    }
-  
-    .conti-air-carousel__item {
-      display: flex;
-      & > *:not(:only-child) {
-        flex: 1;
-      }
-    }
-  
-    .conti-air-carousel__slide-controls {
-      inset-block-start: calc(100% + 16px);
-      transform: unset;
-    }
-  
-    .conti-air-carousel__dots {
-      inset-block-end: -45px;
-      inset-inline-start: 25%;
-      inset-inline-end: 25%;
-      z-index: 1;
-    }
-  
-    .conti-air-carousel__play-controls {
-      inset-block-end: -45px;
-      inset-inline-start: 45px;
-    }
+
+  .huss-carousel--has-teasers .huss-carousel {
+    block-size: var(--teasersHeight);
   }
-  
-  .conti-air-carousel--is-hidden {
+
+  .huss-carousel--has-teasers .huss-carousel__play-controls {
     display: none;
-  }`;
+  }
+
+  .huss-carousel--has-teasers .huss-carousel__slide {
+    gap: 15px;
+  }
+
+  .huss-carousel--has-teasers .huss-carousel__item {
+    display: flex;
+  }
+
+  .huss-carousel--has-teasers > *:not(:only-child) {
+    flex: 1;
+  }
+
+  .huss-carousel--has-teasers .huss-carousel__slide-controls {
+    inset-block-start: calc(100% + 16px);
+    transform: unset;
+  }
+
+  .huss-carousel--has-teasers .huss-carousel__dots {
+    inset-block-end: -45px;
+    inset-inline-start: 25%;
+    inset-inline-end: 25%;
+    z-index: 1;
+  }
+
+  .huss-carousel--has-teasers .huss-carousel__play-controls {
+    inset-block-end: -45px;
+    inset-inline-start: 45px;
+  }
+
+  .huss-carousel--is-hidden {
+    display: none;
+  }
+`;
 //# sourceMappingURL=huss-carousel-styles.js.map
