@@ -27,7 +27,7 @@ export const carouselStyles = css`
     background: var(--carouselBgColour);
   }
 
-  huss-carousel[variant='teaser'] {
+  :host([variant='anyContent']) {
     --teasersHeight: 480px;
     display: block;
     padding-block-end: 55px;

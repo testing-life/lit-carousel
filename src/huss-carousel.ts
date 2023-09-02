@@ -21,7 +21,7 @@ import {
 } from './Utils/utils';
 
 /**
- * An carousel.
+ * A carousel.
  *
  * @slot - This element has a slot
  * @csspart carousel
@@ -33,7 +33,7 @@ enum SwipeDirection {
 
 enum CarouselType {
   Image = 'image',
-  Teaser = 'teaser',
+  AnyContent = 'anyContent',
 }
 
 @customElement('huss-carousel')
@@ -52,8 +52,23 @@ export class HussCarousel extends LitElement {
   @property()
   autoplay: string | undefined;
 
+  @property()
+  elementsInSlideDesktop: number = 3;
+
+  @property()
+  elementsInSlideTablet: number = 2;
+
+  @property()
+  elementsInSlideMobile: number = 1;
+
+  @property()
+  shouldHug: string | undefined;
+
   @state()
   protected currentSlide: number = 0;
+
+  @state()
+  protected letest: any;
 
   @state()
   private elementsPerNestedArray: number = 1;
@@ -76,24 +91,29 @@ export class HussCarousel extends LitElement {
       throttle(() => this.handleElemsPerSlide(), 250)
     );
     super.connectedCallback();
-    // if (this.variant === CarouselType.Teaser) {
-    //   this.handleElemsPerSlide();
-    //   if (this.slides[0].firstElementChild?.classList.contains('huss-events-teaser__teaser')) {
-    //     const childStyles = getComputedStyle(this.slides[0].firstElementChild as HTMLElement);
-    //     const carouselHeightFromChild: number = Math.ceil(
-    //       parseFloat(childStyles.blockSize) + parseFloat(childStyles.marginBlockStart),
-    //     );
-    //     this.style.setProperty('--teasersHeight', `${carouselHeightFromChild}px`);
-    //   }
-    // } else {
-    //   // this.sliceArray(this.slides, this.elementsPerNestedArray);
-    // }
   }
 
   protected override firstUpdated(
     _changedProperties: PropertyValueMap<any> | Map<PropertyKey, unknown>
   ): void {
-    this.sliceArray(this._slides as Element[], this.elementsPerNestedArray);
+    this.letest = this._slides;
+    if (this.variant === CarouselType.AnyContent) {
+      this.handleElemsPerSlide();
+      if (this._slides?.[0]) {
+        const childStyles = getComputedStyle(this._slides[0]);
+        const carouselHeightFromChild: number = Math.ceil(
+          parseFloat(childStyles.blockSize) +
+            parseFloat(childStyles.marginBlockStart)
+        );
+        this.style.setProperty(
+          '--teasersHeight',
+          `${carouselHeightFromChild}px`
+        );
+      }
+    } else {
+      this.sliceArray(this._slides as Element[], this.elementsPerNestedArray);
+    }
+
     if (this.autoplay !== undefined) {
       this.play();
     }
@@ -106,16 +126,18 @@ export class HussCarousel extends LitElement {
     let elementsPerNestedArray: number = 1;
     switch (checkBreakpoints()) {
       case Device.Desktop:
-        elementsPerNestedArray = 3;
+        elementsPerNestedArray = this.elementsInSlideDesktop;
         break;
       case Device.Tablet:
-        elementsPerNestedArray = 2;
+        elementsPerNestedArray = this.elementsInSlideTablet;
         break;
       default:
-        elementsPerNestedArray = 1;
+        elementsPerNestedArray = this.elementsInSlideMobile;
         break;
     }
-    this.sliceArray(this._slides as Element[], elementsPerNestedArray);
+
+    const data = this._slides.length ? this._slides : this.letest; // check
+    this.sliceArray(data, elementsPerNestedArray);
   }
 
   private sliceArray(nodeList: Element[], elemsPerArray: number) {
@@ -193,7 +215,7 @@ export class HussCarousel extends LitElement {
   override render() {
     return html`
       <div
-        class="huss-carousel--wrapper ${this.variant === 'teaser'
+        class="huss-carousel--wrapper ${this.variant === CarouselType.AnyContent
           ? 'huss-carousel--has-teasers'
           : null}"
       >
@@ -237,8 +259,9 @@ export class HussCarousel extends LitElement {
               <li
                 @touchstart=${this.touchStartHandler}
                 @touchend=${this.touchEndHandler}
-                class="huss-carousel__slide ${this.currentRecords.length ===
-                  index + 1 && this.shouldFlexLess(slide, index)
+                class="huss-carousel__slide ${this.shouldHug !== undefined &&
+                this.currentRecords.length === index + 1 &&
+                this.shouldFlexLess(slide, index)
                   ? 'huss-carousel--flex-less'
                   : null}"
                 style="transform: translateX(${100 *
