@@ -9,6 +9,7 @@ export const carouselStyles = css`
     --activeDotColour: goldenrod;
     --focusedDotColour: green;
     --hoveredDotColour: yellow;
+    --carouselBgColour: aquamarine;
   }
 
   :host ul,
@@ -23,6 +24,7 @@ export const carouselStyles = css`
 
   .huss-carousel--wrapper {
     position: relative;
+    background: var(--carouselBgColour);
   }
 
   huss-carousel[variant='teaser'] {

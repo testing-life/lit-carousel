@@ -40,7 +40,7 @@ enum CarouselType {
 export class HussCarousel extends LitElement {
   static override styles = [carouselStyles];
 
-  @queryAssignedElements({slot: 'slides', selector: 'div'})
+  @queryAssignedElements({slot: 'slides', selector: '.huss-carousel__item'})
   _slides!: Array<HTMLElement>;
 
   @property()
@@ -49,11 +49,11 @@ export class HussCarousel extends LitElement {
   @property()
   slideDelay: string = '5500';
 
-  @state()
-  protected currentSlide: number = 0;
+  @property()
+  autoplay: string | undefined;
 
   @state()
-  private isAutoplaying: boolean = false;
+  protected currentSlide: number = 0;
 
   @state()
   private elementsPerNestedArray: number = 1;
@@ -94,6 +94,9 @@ export class HussCarousel extends LitElement {
     _changedProperties: PropertyValueMap<any> | Map<PropertyKey, unknown>
   ): void {
     this.sliceArray(this._slides as Element[], this.elementsPerNestedArray);
+    if (this.autoplay !== undefined) {
+      this.play();
+    }
   }
 
   private handleElemsPerSlide() {
@@ -153,11 +156,6 @@ export class HussCarousel extends LitElement {
     this.sliderInterval = clearInterval(this.sliderInterval);
   }
 
-  private toggleAutoplay() {
-    this.isAutoplaying = !this.isAutoplaying;
-    this.isAutoplaying ? this.play() : this.pause();
-  }
-
   private togglePlay() {
     this.sliderInterval ? this.pause() : this.play();
   }
@@ -205,53 +203,33 @@ export class HussCarousel extends LitElement {
             ? 'huss-carousel--is-hidden'
             : ''}"
         >
-          <button
+          <slot
             class="huss-button--icon huss-carousel__button"
             @click="${this.previousSlideHandler}"
-          >
-            <slot class="huss-button--icon__image" name="prevIcon"></slot>
-          </button>
-          <button
+            name="prevButton"
+          ></slot>
+          <slot
             class="huss-button--icon huss-carousel__button"
             @click="${this.nextSlideHandler}"
-          >
-            <slot class="huss-button--icon__image" name="nextIcon"></slot>
-          </button>
+            name="nextButton"
+          ></slot>
         </div>
         <div
           class="huss-carousel__play-controls ${this.currentRecords.length === 1
             ? 'huss-carousel--is-hidden'
             : ''} "
         >
-          <button
-            class="huss-button--icon huss-carousel__button"
-            @click="${this.toggleAutoplay}"
-          >
-            ${this.isAutoplaying
-              ? html`<slot
-                  class="huss-button--icon__image"
-                  name="autoplayStopIcon"
-                ></slot>`
-              : html`<slot
-                  class="huss-button--icon__image"
-                  name="autoplayStartIcon"
-                ></slot>`}
-          </button>
-          <button
-            class="huss-button--icon huss-carousel__button"
-            @click="${this.togglePlay}"
-            disabled=${!this.isAutoplaying || nothing}
-          >
-            ${this.sliderInterval
-              ? html`<slot
-                  class="huss-button--icon__image"
-                  name="playPauseIcon"
-                ></slot>`
-              : html`<slot
-                  class="huss-button--icon__image"
-                  name="playStartIcon"
-                ></slot>`}
-          </button>
+          ${this.sliderInterval
+            ? html`<slot
+                name="playPauseButton"
+                class="huss-button--icon huss-carousel__button"
+                @click="${this.togglePlay}"
+              ></slot>`
+            : html`<slot
+                name="playStartButton"
+                class="huss-button--icon huss-carousel__button"
+                @click="${this.togglePlay}"
+              ></slot>`}
         </div>
         <ul class="huss-carousel">
           ${this.currentRecords.map((slide: Element[], index: number) => {

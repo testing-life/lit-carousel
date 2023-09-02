@@ -7,25 +7,36 @@
     <script src="../node_modules/@webcomponents/webcomponentsjs/webcomponents-loader.js"></script>
     <script src="../node_modules/lit/polyfill-support.js"></script>
     <script type="module" src="../huss-carousel.js"></script>
-    <style>
-      p {
-        border: solid 1px blue;
-        padding: 8px;
-      }
-    </style>
   </head>
   <body>
-    <huss-carousel slideDelay="2500">
-      <div slot="slides" class="huss-carousel__item">This is child content</div>
-      <div slot="slides" class="huss-carousel__item">
-        This is child content 2
-      </div>
-      <p slot="autoplayStartIcon">>></p>
-      <p slot="autoplayStopIcon">X</p>
-      <p slot="playPauseIcon">x</p>
-      <p slot="playStartIcon">></p>
-      <p slot="nextIcon">=></p>
-      <p slot="prevIcon"><=</p>
+    <huss-carousel slideDelay="2500" autoplay>
+      <img
+        slot="slides"
+        class="huss-carousel__item"
+        src="https://upload.wikimedia.org/wikipedia/commons/1/10/Stoa_of_Attalos_at_the_Ancient_Agora_of_Athens_3.jpg"
+        alt="stoa"
+      />
+      <img
+        slot="slides"
+        class="huss-carousel__item"
+        src="https://upload.wikimedia.org/wikipedia/commons/9/90/Epictetus.jpg"
+        alt="epictetus"
+      />
+      <img
+        slot="slides"
+        class="huss-carousel__item"
+        src="https://upload.wikimedia.org/wikipedia/commons/2/29/UWASocrates_gobeirne_cropped.jpg"
+        alt="socrates"
+      /><img
+        slot="slides"
+        class="huss-carousel__item"
+        src="https://upload.wikimedia.org/wikipedia/commons/a/a4/Socrates_Louvre.jpg"
+        alt="socrates"
+      />
+      <button slot="playPauseButton">||</button>
+      <button slot="playStartButton">></button>
+      <button slot="nextButton">=></button>
+      <button slot="prevButton"><=</button>
     </huss-carousel>
   </body>
 </html>
