@@ -19,12 +19,6 @@ import {
   throttle,
 } from './Utils/utils';
 
-/**
- * A carousel.
- *
- * @slot - This element has a slot
- * @csspart carousel
- */
 enum SwipeDirection {
   Prev = 'prev',
   Next = 'next',
@@ -35,21 +29,45 @@ enum CarouselType {
   AnyContent = 'anyContent',
 }
 
+/**
+ * A carousel for either images or other elements.
+ * @element huss-carousel
+ * @slot slides This element has a slot
+ * @slot playPauseButton This element has ten slot
+ * @slot playStartButton This element has a slot
+ * @slot nextButton This element has a slot
+ * @slot prevButton This element has a slot
+ * @cssprop [--main-color=red]
+ * @csspart carousel
+ * @fires nextSlideHandler on clicketty
+ */
 @customElement('huss-carousel')
 export class HussCarousel extends LitElement {
   static override styles = [carouselStyles];
 
   @queryAssignedElements({slot: 'slides', selector: '.huss-carousel__item'})
-  _slides!: Array<HTMLElement>;
+  _slides: Array<HTMLElement> = [];
 
+  /**
+   * @param {CarouselType}
+   * @default image
+   * @example
+   * variant='anyContent'
+   */
   @property()
   variant: CarouselType = CarouselType.Image;
 
   @property()
   slideDelay: string = '5500';
 
+  /**
+   * This is a description of a property with an attribute called "my-prop".
+   * @type {boolean}
+   * @deprecated
+   * @attr my-prop
+   */
   @property()
-  autoplay: string | undefined;
+  autoplay: string | undefined = undefined;
 
   @property()
   elementsInSlideDesktop: number = 3;
