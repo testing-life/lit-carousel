@@ -5,6 +5,9 @@ export const carouselStyles = css`
     --mobileHeight: 275px;
     --tabletHeight: 369px;
     --desktopHeight: 639px;
+    --dotInlineSize: 10px;
+    --dotBlockSize: 10px;
+    --dotBorderRadius: 50%;
     --dotColour: purple;
     --activeDotColour: goldenrod;
     --focusedDotColour: green;
@@ -123,19 +126,19 @@ export const carouselStyles = css`
 
   .huss-carousel__dot-btn:after {
     content: '';
-    inline-size: 10px;
-    block-size: 10px;
-    background: var(--grey4, grey);
-    border-radius: 50%;
+    inline-size: var(--dotInlineSize);
+    block-size: var(--dotBlockSize);
+    background: var(--dotColour);
+    border-radius: var(--dotBorderRadius);
   }
 
   .huss-carousel__dot-btn:hover:after {
-    background: var(--grey4, black);
+    background: var(--hoveredDotColour);
   }
 
   .huss-carousel__dot-btn--is-active:after {
     content: '';
-    background: var(--grey2, pink);
+    background: var(--activeDotColour);
   }
 
   .huss-carousel__slide-controls {
@@ -159,10 +162,6 @@ export const carouselStyles = css`
     inset-inline-start: 20px;
     inset-block-end: 20px;
     z-index: 1;
-  }
-
-  .huss-carousel__button {
-    background: var(--grey5, blue);
   }
 
   .huss-carousel--has-teasers .huss-carousel {

@@ -4,11 +4,10 @@
  * SPDX-License-Identifier: BSD-3-Clause
  */
 
-import {LitElement, html, css, nothing, PropertyValueMap} from 'lit';
+import {LitElement, html, nothing, PropertyValueMap} from 'lit';
 import {
   customElement,
   property,
-  queryAll,
   queryAssignedElements,
   state,
 } from 'lit/decorators.js';
@@ -184,7 +183,7 @@ export class HussCarousel extends LitElement {
 
   private swipeHandler() {
     const swipeDirection =
-      this.touches.touchEnd - this.touches.touchStart > 0
+      this.touches.touchEnd - this.touches.touchStart < 0
         ? SwipeDirection.Next
         : SwipeDirection.Prev;
     if (swipeDirection === SwipeDirection.Prev) {
