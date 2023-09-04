@@ -39,24 +39,51 @@
                   </li>
                 
                   <li class=>
-                    <a href="name-property/">Setting the name property</a>
+                    <a href="any-content/">Displaying any content in the carousel</a>
                   </li>
                 
                   <li class=>
-                    <a href="any-content/">Displaying any content in the carousel</a>
+                    <a href="hugging-elements/">Leftover components hugging</a>
+                  </li>
+                
+                  <li class=>
+                    <a href="elements-reordering/">Elements Reordering</a>
                   </li>
                 
         </ul>
       </nav>
       <div>
-        <style>
-  huss-carousel p {
-    border: solid 1px blue;
-    padding: 8px;
-  }
-</style>
-<h3>HTML</h3>
+        <h3>HTML</h3>
 <pre class="language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>huss-carousel</span> <span class="token attr-name">slideDelay</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>2500<span class="token punctuation">"</span></span> <span class="token attr-name">autoplay</span><span class="token punctuation">></span></span><br>  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>img</span><br>    <span class="token attr-name">slot</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>slides<span class="token punctuation">"</span></span><br>    <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>huss-carousel__item<span class="token punctuation">"</span></span><br>    <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>https://upload.wikimedia.org/wikipedia/commons/1/10/Stoa_of_Attalos_at_the_Ancient_Agora_of_Athens_3.jpg<span class="token punctuation">"</span></span><br>    <span class="token attr-name">alt</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>stoa<span class="token punctuation">"</span></span><br>  <span class="token punctuation">/></span></span><br>  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>img</span><br>    <span class="token attr-name">slot</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>slides<span class="token punctuation">"</span></span><br>    <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>huss-carousel__item<span class="token punctuation">"</span></span><br>    <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>https://upload.wikimedia.org/wikipedia/commons/9/90/Epictetus.jpg<span class="token punctuation">"</span></span><br>    <span class="token attr-name">alt</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>epictetus<span class="token punctuation">"</span></span><br>  <span class="token punctuation">/></span></span><br>  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>img</span><br>    <span class="token attr-name">slot</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>slides<span class="token punctuation">"</span></span><br>    <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>huss-carousel__item<span class="token punctuation">"</span></span><br>    <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>https://upload.wikimedia.org/wikipedia/commons/2/29/UWASocrates_gobeirne_cropped.jpg<span class="token punctuation">"</span></span><br>    <span class="token attr-name">alt</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>socrates<span class="token punctuation">"</span></span><br>  <span class="token punctuation">/></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>img</span><br>    <span class="token attr-name">slot</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>slides<span class="token punctuation">"</span></span><br>    <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>huss-carousel__item<span class="token punctuation">"</span></span><br>    <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>https://upload.wikimedia.org/wikipedia/commons/a/a4/Socrates_Louvre.jpg<span class="token punctuation">"</span></span><br>    <span class="token attr-name">alt</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>socrates<span class="token punctuation">"</span></span><br>  <span class="token punctuation">/></span></span><br>  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>button</span> <span class="token attr-name">slot</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>playPauseButton<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>||<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>button</span><span class="token punctuation">></span></span><br>  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>button</span> <span class="token attr-name">slot</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>playStartButton<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>button</span><span class="token punctuation">></span></span><br>  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>button</span> <span class="token attr-name">slot</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>nextButton<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>=><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>button</span><span class="token punctuation">></span></span><br>  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>button</span> <span class="token attr-name">slot</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>prevButton<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>&lt;=<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>button</span><span class="token punctuation">></span></span><br><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>huss-carousel</span><span class="token punctuation">></span></span></code></pre>
+<huss-carousel slideDelay="2500" autoplay>
+  <img
+    slot="slides"
+    class="huss-carousel__item"
+    src="https://upload.wikimedia.org/wikipedia/commons/1/10/Stoa_of_Attalos_at_the_Ancient_Agora_of_Athens_3.jpg"
+    alt="stoa"
+  />
+  <img
+    slot="slides"
+    class="huss-carousel__item"
+    src="https://upload.wikimedia.org/wikipedia/commons/9/90/Epictetus.jpg"
+    alt="epictetus"
+  />
+  <img
+    slot="slides"
+    class="huss-carousel__item"
+    src="https://upload.wikimedia.org/wikipedia/commons/2/29/UWASocrates_gobeirne_cropped.jpg"
+    alt="socrates"
+  /><img
+    slot="slides"
+    class="huss-carousel__item"
+    src="https://upload.wikimedia.org/wikipedia/commons/a/a4/Socrates_Louvre.jpg"
+    alt="socrates"
+  />
+  <button slot="playPauseButton">||</button>
+  <button slot="playStartButton">></button>
+  <button slot="nextButton">=></button>
+  <button slot="prevButton"><=</button>
+</huss-carousel>
 
       </div>
     </section>
