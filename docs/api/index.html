@@ -33,7 +33,7 @@
      
        <h2>&lt;huss-carousel></h2>
        <div>
-         A carousel for either images or other elements.
+         A carousel for either images or other elements. If you display other elements, the carousel will split them per slide and adjust the number of elements depending on screen size.
        </div>
        
    <h3>Attributes</h3>
@@ -43,35 +43,31 @@
      </tr>
      
        <tr>
-         <td>my-prop</td><td>This is a description of a property with an attribute called "my-prop".</td><td>boolean</td><td>undefined</td>
+         <td>variant</td><td>An option telling the carousel that you are displaying either images or other components.</td><td>image | anyContent</td><td></td>
        </tr>
      
        <tr>
-         <td>variant</td><td></td><td>CarouselType</td><td></td>
+         <td>slideDelay</td><td>How long is one slide displayed.</td><td>number</td><td>'5500'</td>
        </tr>
      
        <tr>
-         <td>slideDelay</td><td></td><td>string</td><td>'5500'</td>
+         <td>autoplay</td><td>Should the carousel start autoplaying.</td><td>boolean</td><td>undefined</td>
        </tr>
      
        <tr>
-         <td>autoplay</td><td>This is a description of a property with an attribute called "my-prop".</td><td>boolean</td><td>undefined</td>
+         <td>elementsInSlideDesktop</td><td>How many elements should fit in one slide on large screen.</td><td>number</td><td>3</td>
        </tr>
      
        <tr>
-         <td>elementsInSlideDesktop</td><td></td><td>number</td><td>3</td>
+         <td>elementsInSlideTablet</td><td>How many elements should fit in one slide on medium screen.</td><td>number</td><td>2</td>
        </tr>
      
        <tr>
-         <td>elementsInSlideTablet</td><td></td><td>number</td><td>2</td>
+         <td>elementsInSlideMobile</td><td>How many elements should fit in one slide on small screen.</td><td>number</td><td>1</td>
        </tr>
      
        <tr>
-         <td>elementsInSlideMobile</td><td></td><td>number</td><td>1</td>
-       </tr>
-     
-       <tr>
-         <td>shouldHug</td><td></td><td>string | undefined</td><td></td>
+         <td>shouldHug</td><td>Should the remaining elements on last slide be rendered closely together, rather than laid out with flex.</td><td>boolean</td><td></td>
        </tr>
      
    </table>
@@ -84,35 +80,35 @@
      </tr>
      
        <tr>
-         <td>_slides</td><td></td><td></td><td>Array<HTMLElement></td><td>[]</td>
+         <td>_slides</td><td></td><td></td><td>Array<HTMLElement></td><td></td>
        </tr>
      
        <tr>
-         <td>variant</td><td>variant</td><td></td><td>CarouselType</td><td></td>
+         <td>variant</td><td>variant</td><td>An option telling the carousel that you are displaying either images or other components.</td><td>image | anyContent</td><td></td>
        </tr>
      
        <tr>
-         <td>slideDelay</td><td>slideDelay</td><td></td><td>string</td><td>'5500'</td>
+         <td>slideDelay</td><td>slideDelay</td><td>How long is one slide displayed.</td><td>number</td><td>'5500'</td>
        </tr>
      
        <tr>
-         <td>autoplay</td><td>autoplay</td><td>This is a description of a property with an attribute called "my-prop".</td><td>boolean</td><td>undefined</td>
+         <td>autoplay</td><td>autoplay</td><td>Should the carousel start autoplaying.</td><td>boolean</td><td>undefined</td>
        </tr>
      
        <tr>
-         <td>elementsInSlideDesktop</td><td>elementsInSlideDesktop</td><td></td><td>number</td><td>3</td>
+         <td>elementsInSlideDesktop</td><td>elementsInSlideDesktop</td><td>How many elements should fit in one slide on large screen.</td><td>number</td><td>3</td>
        </tr>
      
        <tr>
-         <td>elementsInSlideTablet</td><td>elementsInSlideTablet</td><td></td><td>number</td><td>2</td>
+         <td>elementsInSlideTablet</td><td>elementsInSlideTablet</td><td>How many elements should fit in one slide on medium screen.</td><td>number</td><td>2</td>
        </tr>
      
        <tr>
-         <td>elementsInSlideMobile</td><td>elementsInSlideMobile</td><td></td><td>number</td><td>1</td>
+         <td>elementsInSlideMobile</td><td>elementsInSlideMobile</td><td>How many elements should fit in one slide on small screen.</td><td>number</td><td>1</td>
        </tr>
      
        <tr>
-         <td>shouldHug</td><td>shouldHug</td><td></td><td>string | undefined</td><td></td>
+         <td>shouldHug</td><td>shouldHug</td><td>Should the remaining elements on last slide be rendered closely together, rather than laid out with flex.</td><td>boolean</td><td></td>
        </tr>
      
        <tr>
@@ -120,19 +116,15 @@
        </tr>
      
        <tr>
-         <td>letest</td><td></td><td></td><td>any</td><td></td>
+         <td>slidesInternal</td><td></td><td>Keeps injected slides for rerenders.</td><td>Element[]</td><td></td>
        </tr>
      
        <tr>
-         <td>elementsPerNestedArray</td><td></td><td></td><td>number</td><td>1</td>
+         <td>currentRecords</td><td></td><td>Result of splitting slides as per attributes and screen size.</td><td>Array<Element[]></td><td>[]</td>
        </tr>
      
        <tr>
-         <td>currentRecords</td><td></td><td></td><td>Array<Element[]></td><td>[]</td>
-       </tr>
-     
-       <tr>
-         <td>sliderInterval</td><td></td><td></td><td>any</td><td></td>
+         <td>sliderInterval</td><td></td><td>Interval for slides' change, driven by slidesDelay value.</td><td>number | void</td><td></td>
        </tr>
      
        <tr>

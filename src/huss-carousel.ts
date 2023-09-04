@@ -30,7 +30,7 @@ enum CarouselType {
 }
 
 /**
- * A carousel for either images or other elements.
+ * A carousel for either images or other elements. If you display other elements, the carousel will split them per slide and adjust the number of elements depending on screen size.
  * @element huss-carousel
  * @slot slides This element has a slot
  * @slot playPauseButton This element has ten slot
@@ -46,55 +46,87 @@ export class HussCarousel extends LitElement {
   static override styles = [carouselStyles];
 
   @queryAssignedElements({slot: 'slides', selector: '.huss-carousel__item'})
-  _slides: Array<HTMLElement> = [];
+  _slides: Array<HTMLElement>;
 
   /**
-   * @param {CarouselType}
-   * @default image
-   * @example
-   * variant='anyContent'
+   * An option telling the carousel that you are displaying either images or other components.
+   * @type {image | anyContent}
+   * @attr variant
    */
   @property()
   variant: CarouselType = CarouselType.Image;
 
+  /**
+   * How long is one slide displayed.
+   * @type {number}
+   * @attr slideDelay
+   */
   @property()
   slideDelay: string = '5500';
 
   /**
-   * This is a description of a property with an attribute called "my-prop".
+   * Should the carousel start autoplaying.
    * @type {boolean}
-   * @deprecated
-   * @attr my-prop
+   * @attr autoplay
    */
   @property()
   autoplay: string | undefined = undefined;
 
+  /**
+   * How many elements should fit in one slide on large screen.
+   * @type {number}
+   * @attr elementsInSlideDesktop
+   */
   @property()
   elementsInSlideDesktop: number = 3;
 
+  /**
+   * How many elements should fit in one slide on medium screen.
+   * @type {number}
+   * @attr elementsInSlideTablet
+   */
   @property()
   elementsInSlideTablet: number = 2;
 
+  /**
+   * How many elements should fit in one slide on small screen.
+   * @type {number}
+   * @attr elementsInSlideMobile
+   */
   @property()
   elementsInSlideMobile: number = 1;
 
+  /**
+   * Should the remaining elements on last slide be rendered closely together, rather than laid out with flex.
+   * @type {boolean}
+   * @attr shouldHug
+   */
   @property()
   shouldHug: string | undefined;
 
   @state()
   protected currentSlide: number = 0;
 
+  /**
+   * Keeps injected slides for rerenders.
+   * @prop slidesInternal
+   */
   @state()
-  protected letest: any;
+  protected slidesInternal: Element[];
 
-  @state()
-  private elementsPerNestedArray: number = 1;
-
+  /**
+   * Result of splitting slides as per attributes and screen size.
+   * @prop currentRecords
+   */
   @state()
   private currentRecords: Array<Element[]> = [];
 
+  /**
+   * Interval for slides' change, driven by slidesDelay value.
+   * @prop sliderInterval
+   */
   @state()
-  private sliderInterval: any;
+  private sliderInterval: number | void;
 
   protected lastSlide: number = 0;
   private touches: {touchStart: number; touchEnd: number} = {
@@ -113,7 +145,7 @@ export class HussCarousel extends LitElement {
   protected override firstUpdated(
     _changedProperties: PropertyValueMap<any> | Map<PropertyKey, unknown>
   ): void {
-    this.letest = this._slides;
+    this.slidesInternal = this._slides;
     if (this.variant === CarouselType.AnyContent) {
       this.handleElemsPerSlide();
       if (this._slides?.[0]) {
@@ -128,7 +160,7 @@ export class HussCarousel extends LitElement {
         );
       }
     } else {
-      this.sliceArray(this._slides as Element[], this.elementsPerNestedArray);
+      this.sliceArray(this._slides as Element[], 1);
     }
 
     if (this.autoplay !== undefined) {
@@ -153,13 +185,17 @@ export class HussCarousel extends LitElement {
         break;
     }
 
-    const data = this._slides.length ? this._slides : this.letest; // check
+    const data = this._slides.length ? this._slides : this.slidesInternal; // check
     this.sliceArray(data, elementsPerNestedArray);
   }
 
   private sliceArray(nodeList: Element[], elemsPerArray: number) {
     const slidesArray = Array.from(nodeList);
-    this.currentRecords = splitArrayIntoNestedArray(slidesArray, elemsPerArray);
+    const elements =
+      typeof elemsPerArray === 'number'
+        ? elemsPerArray
+        : parseInt(elemsPerArray);
+    this.currentRecords = splitArrayIntoNestedArray(slidesArray, elements);
     if (this._slides?.length) {
       this.lastSlide = this.currentRecords.length - 1;
     }
@@ -192,7 +228,7 @@ export class HussCarousel extends LitElement {
   }
 
   private pause() {
-    this.sliderInterval = clearInterval(this.sliderInterval);
+    this.sliderInterval = clearInterval(this.sliderInterval as number);
   }
 
   private togglePlay() {
