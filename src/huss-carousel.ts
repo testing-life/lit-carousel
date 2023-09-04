@@ -32,14 +32,22 @@ enum CarouselType {
 /**
  * A carousel for either images or other elements. If you display other elements, the carousel will split them per slide and adjust the number of elements depending on screen size.
  * @element huss-carousel
- * @slot slides This element has a slot
- * @slot playPauseButton This element has ten slot
- * @slot playStartButton This element has a slot
- * @slot nextButton This element has a slot
- * @slot prevButton This element has a slot
- * @cssprop [--main-color=red]
- * @csspart carousel
- * @fires nextSlideHandler on clicketty
+ * @slot slides - Content to be displayed in the carousel.
+ * @slot playPauseButton - Expects a button element.
+ * @slot playStartButton - Expects a button element.
+ * @slot nextButton - Expects a button element.
+ * @slot prevButton - Expects a button element.
+ * @cssprop --mobileHeight - Carousel height on small screens.
+ * @cssprop --tabletHeight - Carousel height on medium screens.
+ * @cssprop --desktopHeight - Carousel height on large screens.
+ * @cssprop --dotInlineSize - Width of dots for carousel navigation.
+ * @cssprop --dotBlockSize - Height of dots for carousel navigation.
+ * @cssprop --dotBorderRadius - Border radius of  dots for carousel navigation.
+ * @cssprop --dotColour - Colour of dots for carousel navigation.
+ * @cssprop --activeDotColour - Active state colour of dots for carousel navigation.
+ * @cssprop --focusedDotColour - Focus state colour of dots for carousel navigation. Renders an outline around the button.
+ * @cssprop --hoveredDotColour - Hover state colour of dots for carousel navigation.
+ * @cssprop --carouselBgColour - Background colour of the whole element
  */
 @customElement('huss-carousel')
 export class HussCarousel extends LitElement {

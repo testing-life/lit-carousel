@@ -15,7 +15,7 @@ title: <huss-carousel> ⌲ Home
 `<huss-carousel>` is just an HTML element. You can it anywhere you can use HTML!
 
 ```html
-<huss-carousel slideDelay="2500" autoplay>
+<huss-carousel>
   <img
     slot="slides"
     class="huss-carousel__item"
@@ -49,7 +49,35 @@ title: <huss-carousel> ⌲ Home
   </div>
   <div>
 
-<huss-carousel></huss-carousel>
+<huss-carousel>
+  <img
+    slot="slides"
+    class="huss-carousel__item"
+    src="https://upload.wikimedia.org/wikipedia/commons/1/10/Stoa_of_Attalos_at_the_Ancient_Agora_of_Athens_3.jpg"
+    alt="stoa"
+  />
+  <img
+    slot="slides"
+    class="huss-carousel__item"
+    src="https://upload.wikimedia.org/wikipedia/commons/9/90/Epictetus.jpg"
+    alt="epictetus"
+  />
+  <img
+    slot="slides"
+    class="huss-carousel__item"
+    src="https://upload.wikimedia.org/wikipedia/commons/2/29/UWASocrates_gobeirne_cropped.jpg"
+    alt="socrates"
+  /><img
+    slot="slides"
+    class="huss-carousel__item"
+    src="https://upload.wikimedia.org/wikipedia/commons/a/a4/Socrates_Louvre.jpg"
+    alt="socrates"
+  />
+  <button slot="playPauseButton">||</button>
+  <button slot="playStartButton">></button>
+  <button slot="nextButton">=></button>
+  <button slot="prevButton"><=</button>
+</huss-carousel>
 
   </div>
 </section>

@@ -121,7 +121,7 @@ export const carouselStyles = css`
   .huss-carousel__dot-btn:focus-visible {
     outline: none;
     border-radius: 2px;
-    box-shadow: 0 0 0 1px var(--black);
+    box-shadow: 0 0 0 1px var(--focusedDotColour);
   }
 
   .huss-carousel__dot-btn:after {
