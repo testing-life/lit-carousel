@@ -10,7 +10,7 @@ title: <huss-carousel> ⌲ Install
 ## Local Installation
 
 ```bash
-npm i huss-carousel
+npm i @m-hussariush/huss-carousel
 ```
 
 ## CDN
@@ -22,11 +22,15 @@ For this element to work from unpkg.com specifically, you need to include the `?
 ### HTML
 
 ```html
-<script type="module" src="https://unpkg.com/huss-carousel?module"></script>
+<script
+  type="module"
+  src="https://unpkg.com/@m-hussariush/huss-carousel@0.0.1/huss-carousel.js?module"
+></script>
 ```
 
 ### JavaScript
 
 ```html
-import {HussCarousel} from 'https://unpkg.com/huss-carousel?module';
+import {HussCarousel} from
+'https://unpkg.com/@m-hussariush/huss-carousel@0.0.1/huss-carousel.js?module';
 ```
