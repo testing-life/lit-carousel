@@ -3,20 +3,129 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <title>&lt;my-element> Demo</title>
+    <title>&lt;huss-carousel> Demo</title>
     <script src="../node_modules/@webcomponents/webcomponentsjs/webcomponents-loader.js"></script>
     <script src="../node_modules/lit/polyfill-support.js"></script>
-    <script type="module" src="../my-element.js"></script>
-    <style>
-      p {
-        border: solid 1px blue;
-        padding: 8px;
-      }
-    </style>
+    <script type="module" src="../huss-carousel.js"></script>
   </head>
   <body>
-    <my-element>
-      <p>This is child content</p>
-    </my-element>
+    <huss-carousel
+      slideDelay="5500"
+      elementsInSlideTablet="3"
+      autoplay
+      variant="anyContent"
+    >
+      <section
+        slot="slides"
+        class="huss-carousel__item"
+        style="height: 250px; background: lightblue"
+      >
+        i am a nonimage 1
+      </section>
+      <section
+        slot="slides"
+        class="huss-carousel__item"
+        style="height: 250px; background: lightblue"
+      >
+        i am a nonimage 2
+      </section>
+      <section
+        slot="slides"
+        class="huss-carousel__item"
+        style="height: 250px; background: lightblue"
+      >
+        i am a nonimage 3
+      </section>
+      <section
+        slot="slides"
+        class="huss-carousel__item"
+        style="height: 250px; background: lightblue"
+      >
+        i am a nonimage 4
+      </section>
+      <section
+        slot="slides"
+        class="huss-carousel__item"
+        style="height: 250px; background: lightblue"
+      >
+        i am a nonimage 5
+      </section>
+      <button slot="playPauseButton">||</button>
+      <button slot="playStartButton">></button>
+      <button slot="nextButton">=></button>
+      <button slot="prevButton"><=</button>
+    </huss-carousel>
+    <br />
+    <huss-carousel slideDelay="5500" autoplay shouldHug variant="anyContent">
+      <section
+        slot="slides"
+        class="huss-carousel__item"
+        style="height: 250px; background: lightblue"
+      >
+        i am a nonimage 1
+      </section>
+      <section
+        slot="slides"
+        class="huss-carousel__item"
+        style="height: 250px; background: lightblue"
+      >
+        i am a nonimage 2
+      </section>
+      <section
+        slot="slides"
+        class="huss-carousel__item"
+        style="height: 250px; background: lightblue"
+      >
+        i am a nonimage 3
+      </section>
+      <section
+        slot="slides"
+        class="huss-carousel__item"
+        style="height: 250px; background: lightblue"
+      >
+        i am a nonimage 4
+      </section>
+      <section
+        slot="slides"
+        class="huss-carousel__item"
+        style="height: 250px; background: lightblue"
+      >
+        i am a nonimage 5
+      </section>
+      <button slot="playPauseButton">||</button>
+      <button slot="playStartButton">></button>
+      <button slot="nextButton">=></button>
+      <button slot="prevButton"><=</button>
+    </huss-carousel>
+    <br />
+    <huss-carousel slideDelay="2500" autoplay>
+      <img
+        slot="slides"
+        class="huss-carousel__item"
+        src="https://upload.wikimedia.org/wikipedia/commons/1/10/Stoa_of_Attalos_at_the_Ancient_Agora_of_Athens_3.jpg"
+        alt="stoa"
+      />
+      <img
+        slot="slides"
+        class="huss-carousel__item"
+        src="https://upload.wikimedia.org/wikipedia/commons/9/90/Epictetus.jpg"
+        alt="epictetus"
+      />
+      <img
+        slot="slides"
+        class="huss-carousel__item"
+        src="https://upload.wikimedia.org/wikipedia/commons/2/29/UWASocrates_gobeirne_cropped.jpg"
+        alt="socrates"
+      /><img
+        slot="slides"
+        class="huss-carousel__item"
+        src="https://upload.wikimedia.org/wikipedia/commons/a/a4/Socrates_Louvre.jpg"
+        alt="socrates"
+      />
+      <button slot="playPauseButton">||</button>
+      <button slot="playStartButton">></button>
+      <button slot="nextButton">=></button>
+      <button slot="prevButton"><=</button>
+    </huss-carousel>
   </body>
 </html>

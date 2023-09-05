@@ -1,27 +1,83 @@
 ---
 layout: page.11ty.cjs
-title: <my-element> ⌲ Home
+title: <huss-carousel> ⌲ Home
 ---
 
-# &lt;my-element>
+# &lt;huss-carousel>
 
-`<my-element>` is an awesome element. It's a great introduction to building web components with LitElement, with nice documentation site as well.
+`<huss-carousel>` is an awesome element. It's a great introduction to building web components with LitElement, with nice documentation site as well.
 
 ## As easy as HTML
 
 <section class="columns">
   <div>
 
-`<my-element>` is just an HTML element. You can it anywhere you can use HTML!
+`<huss-carousel>` is just an HTML element. You can it anywhere you can use HTML!
 
 ```html
-<my-element></my-element>
+<huss-carousel>
+  <img
+    slot="slides"
+    class="huss-carousel__item"
+    src="https://upload.wikimedia.org/wikipedia/commons/1/10/Stoa_of_Attalos_at_the_Ancient_Agora_of_Athens_3.jpg"
+    alt="stoa"
+  />
+  <img
+    slot="slides"
+    class="huss-carousel__item"
+    src="https://upload.wikimedia.org/wikipedia/commons/9/90/Epictetus.jpg"
+    alt="epictetus"
+  />
+  <img
+    slot="slides"
+    class="huss-carousel__item"
+    src="https://upload.wikimedia.org/wikipedia/commons/2/29/UWASocrates_gobeirne_cropped.jpg"
+    alt="socrates"
+  /><img
+    slot="slides"
+    class="huss-carousel__item"
+    src="https://upload.wikimedia.org/wikipedia/commons/a/a4/Socrates_Louvre.jpg"
+    alt="socrates"
+  />
+  <button slot="playPauseButton">||</button>
+  <button slot="playStartButton">></button>
+  <button slot="nextButton">=></button>
+  <button slot="prevButton"><=</button>
+</huss-carousel>
 ```
 
   </div>
   <div>
 
-<my-element></my-element>
+<huss-carousel>
+  <img
+    slot="slides"
+    class="huss-carousel__item"
+    src="https://upload.wikimedia.org/wikipedia/commons/1/10/Stoa_of_Attalos_at_the_Ancient_Agora_of_Athens_3.jpg"
+    alt="stoa"
+  />
+  <img
+    slot="slides"
+    class="huss-carousel__item"
+    src="https://upload.wikimedia.org/wikipedia/commons/9/90/Epictetus.jpg"
+    alt="epictetus"
+  />
+  <img
+    slot="slides"
+    class="huss-carousel__item"
+    src="https://upload.wikimedia.org/wikipedia/commons/2/29/UWASocrates_gobeirne_cropped.jpg"
+    alt="socrates"
+  /><img
+    slot="slides"
+    class="huss-carousel__item"
+    src="https://upload.wikimedia.org/wikipedia/commons/a/a4/Socrates_Louvre.jpg"
+    alt="socrates"
+  />
+  <button slot="playPauseButton">||</button>
+  <button slot="playStartButton">></button>
+  <button slot="nextButton">=></button>
+  <button slot="prevButton"><=</button>
+</huss-carousel>
 
   </div>
 </section>
@@ -31,16 +87,71 @@ title: <my-element> ⌲ Home
 <section class="columns">
   <div>
 
-`<my-element>` can be configured with attributed in plain HTML.
+`<huss-carousel>` can be configured with attributed in plain HTML.
 
 ```html
-<my-element name="HTML"></my-element>
+<huss-carousel autoplay slideDelay="1234"
+  ><img
+    slot="slides"
+    class="huss-carousel__item"
+    src="https://upload.wikimedia.org/wikipedia/commons/1/10/Stoa_of_Attalos_at_the_Ancient_Agora_of_Athens_3.jpg"
+    alt="stoa"
+  />
+  <img
+    slot="slides"
+    class="huss-carousel__item"
+    src="https://upload.wikimedia.org/wikipedia/commons/9/90/Epictetus.jpg"
+    alt="epictetus"
+  />
+  <img
+    slot="slides"
+    class="huss-carousel__item"
+    src="https://upload.wikimedia.org/wikipedia/commons/2/29/UWASocrates_gobeirne_cropped.jpg"
+    alt="socrates"
+  /><img
+    slot="slides"
+    class="huss-carousel__item"
+    src="https://upload.wikimedia.org/wikipedia/commons/a/a4/Socrates_Louvre.jpg"
+    alt="socrates"
+  />
+  <button slot="playPauseButton">||</button>
+  <button slot="playStartButton">></button>
+  <button slot="nextButton">=></button>
+  <button slot="prevButton"><=</button>
+</huss-carousel>
 ```
 
   </div>
   <div>
 
-<my-element name="HTML"></my-element>
+<huss-carousel autoplay slideDelay="1234"><img
+    slot="slides"
+    class="huss-carousel__item"
+    src="https://upload.wikimedia.org/wikipedia/commons/1/10/Stoa_of_Attalos_at_the_Ancient_Agora_of_Athens_3.jpg"
+    alt="stoa"
+  />
+<img
+    slot="slides"
+    class="huss-carousel__item"
+    src="https://upload.wikimedia.org/wikipedia/commons/9/90/Epictetus.jpg"
+    alt="epictetus"
+  />
+<img
+    slot="slides"
+    class="huss-carousel__item"
+    src="https://upload.wikimedia.org/wikipedia/commons/2/29/UWASocrates_gobeirne_cropped.jpg"
+    alt="socrates"
+  /><img
+    slot="slides"
+    class="huss-carousel__item"
+    src="https://upload.wikimedia.org/wikipedia/commons/a/a4/Socrates_Louvre.jpg"
+    alt="socrates"
+  />
+<button slot="playPauseButton">||</button>
+<button slot="playStartButton">></button>
+<button slot="nextButton">=></button>
+<button slot="prevButton"><=</button>
+</huss-carousel>
 
   </div>
 </section>
@@ -50,7 +161,7 @@ title: <my-element> ⌲ Home
 <section class="columns">
   <div>
 
-`<my-element>` can be used with declarative rendering libraries like Angular, React, Vue, and lit-html
+`<huss-carousel>` can be used with declarative rendering libraries like Angular, React, Vue, and lit-html
 
 ```js
 import {html, render} from 'lit-html';
@@ -59,8 +170,36 @@ const name = 'lit-html';
 
 render(
   html`
-    <h2>This is a &lt;my-element&gt;</h2>
-    <my-element .name=${name}></my-element>
+    <h2>This is a &lt;huss-carousel&gt;</h2>
+    <huss-carousel
+      ><img
+        slot="slides"
+        class="huss-carousel__item"
+        src="https://upload.wikimedia.org/wikipedia/commons/1/10/Stoa_of_Attalos_at_the_Ancient_Agora_of_Athens_3.jpg"
+        alt="stoa"
+      />
+      <img
+        slot="slides"
+        class="huss-carousel__item"
+        src="https://upload.wikimedia.org/wikipedia/commons/9/90/Epictetus.jpg"
+        alt="epictetus"
+      />
+      <img
+        slot="slides"
+        class="huss-carousel__item"
+        src="https://upload.wikimedia.org/wikipedia/commons/2/29/UWASocrates_gobeirne_cropped.jpg"
+        alt="socrates"
+      /><img
+        slot="slides"
+        class="huss-carousel__item"
+        src="https://upload.wikimedia.org/wikipedia/commons/a/a4/Socrates_Louvre.jpg"
+        alt="socrates"
+      />
+      <button slot="playPauseButton">||</button>
+      <button slot="playStartButton">></button>
+      <button slot="nextButton">=></button>
+      <button slot="prevButton"><=</button>
+    </huss-carousel>
   `,
   document.body
 );
@@ -69,8 +208,36 @@ render(
   </div>
   <div>
 
-<h2>This is a &lt;my-element&gt;</h2>
-<my-element name="lit-html"></my-element>
+<h2>This is a &lt;huss-carousel&gt;</h2>
+<huss-carousel>
+<img
+    slot="slides"
+    class="huss-carousel__item"
+    src="https://upload.wikimedia.org/wikipedia/commons/1/10/Stoa_of_Attalos_at_the_Ancient_Agora_of_Athens_3.jpg"
+    alt="stoa"
+  />
+  <img
+    slot="slides"
+    class="huss-carousel__item"
+    src="https://upload.wikimedia.org/wikipedia/commons/9/90/Epictetus.jpg"
+    alt="epictetus"
+  />
+  <img
+    slot="slides"
+    class="huss-carousel__item"
+    src="https://upload.wikimedia.org/wikipedia/commons/2/29/UWASocrates_gobeirne_cropped.jpg"
+    alt="socrates"
+  /><img
+    slot="slides"
+    class="huss-carousel__item"
+    src="https://upload.wikimedia.org/wikipedia/commons/a/a4/Socrates_Louvre.jpg"
+    alt="socrates"
+  />
+  <button slot="playPauseButton">||</button>
+  <button slot="playStartButton">></button>
+  <button slot="nextButton">=></button>
+  <button slot="prevButton"><=</button>
+</huss-carousel>
 
   </div>
 </section>

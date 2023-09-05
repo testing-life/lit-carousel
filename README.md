@@ -1,17 +1,98 @@
-# LitElement TypeScript starter
+# LitElement custom carousel
 
-This project includes a sample component using LitElement with TypeScript.
+This carousel enables you to display either images or essentially any other type of components. If displaying anythign else than images, you can specify how many elements are shown per slide for large, medium and small screen sizes. The carousel will recalculate accordingly on screen resize.
 
-This template is generated from the `lit-starter-ts` package in [the main Lit
-repo](https://github.com/lit/lit). Issues and PRs for this template should be
-filed in that repo.
+## Features:
+
+- play, pause, autoplay
+- flexibility in terms of carousel control buttons via slots
+- you can specify how many items are show pre slide for each screen size
+- flexible styling through custom CSS properties
+
+## Options
+
+| attribute                | optional | type   | possible values        | purpose                                                                                                   |
+| ------------------------ | -------- | ------ | ---------------------- | --------------------------------------------------------------------------------------------------------- |
+| `variant`                | optional | bool   | 'image' , 'anyContent' | An option telling the carousel that you are displaying either images or other components.                 |
+| `slideDelay`             | optional | number |                        | How long one slide is displayed.                                                                          |
+| `autoplay`               | optional | bool   | boolean attribute      | Should the carousel start autoplaying.                                                                    |
+| `elementsInSlideDesktop` | optional | number |                        | How many elements should fit in one slide on large screen.                                                |
+| `elementsInSlideTablet`  | optional | number |                        | How many elements should fit in one slide on medium screen.                                               |
+| `elementsInSlideMobile`  | optional | number |                        | How many elements should fit in one slide on small screen.                                                |
+| `shouldHug`              | optional | bool   | boolean attribute      | Should the remaining elements on last slide be rendered closely together, rather than laid out with flex. |
+
+## Usage example
+
+`slot="slides"` and `class="huss-carousel__item"` are important for content. Other slots are needed for controls.
+
+```html
+<huss-carousel variant="anyContent">
+  <section
+    slot="slides"
+    class="huss-carousel__item"
+    style="height: 250px; background: lightblue"
+  >
+    i am a nonimage 1
+  </section>
+  <section
+    slot="slides"
+    class="huss-carousel__item"
+    style="height: 250px; background: lightblue"
+  >
+    i am a nonimage 2
+  </section>
+  <section
+    slot="slides"
+    class="huss-carousel__item"
+    style="height: 250px; background: lightblue"
+  >
+    i am a nonimage 3
+  </section>
+  <button slot="playPauseButton">||</button>
+  <button slot="playStartButton">></button>
+  <button slot="nextButton">=></button>
+  <button slot="prevButton"><=</button>
+</huss-carousel>
+```
+
+```html
+<huss-carousel>
+  <img
+    slot="slides"
+    class="huss-carousel__item"
+    src="https://upload.wikimedia.org/wikipedia/commons/1/10/Stoa_of_Attalos_at_the_Ancient_Agora_of_Athens_3.jpg"
+    alt="stoa"
+  />
+  <img
+    slot="slides"
+    class="huss-carousel__item"
+    src="https://upload.wikimedia.org/wikipedia/commons/9/90/Epictetus.jpg"
+    alt="epictetus"
+  />
+  <img
+    slot="slides"
+    class="huss-carousel__item"
+    src="https://upload.wikimedia.org/wikipedia/commons/2/29/UWASocrates_gobeirne_cropped.jpg"
+    alt="socrates"
+  /><img
+    slot="slides"
+    class="huss-carousel__item"
+    src="https://upload.wikimedia.org/wikipedia/commons/a/a4/Socrates_Louvre.jpg"
+    alt="socrates"
+  />
+  <button slot="playPauseButton">||</button>
+  <button slot="playStartButton">></button>
+  <button slot="nextButton">=></button>
+  <button slot="prevButton"><=</button>
+</huss-carousel>
+```
 
 ## Setup
 
 Install dependencies:
 
 ```bash
-npm i
+npm i @m-hussariush/huss-carousel
 ```
 
 ## Build
@@ -64,20 +145,6 @@ npm run serve
 ```
 
 There is a development HTML file located at `/dev/index.html` that you can view at http://localhost:8000/dev/index.html. Note that this command will serve your code using Lit's development mode (with more verbose errors). To serve your code against Lit's production mode, use `npm run serve:prod`.
-
-## Editing
-
-If you use VS Code, we highly recommend the [lit-plugin extension](https://marketplace.visualstudio.com/items?itemName=runem.lit-plugin), which enables some extremely useful features for lit-html templates:
-
-- Syntax highlighting
-- Type-checking
-- Code completion
-- Hover-over docs
-- Jump to definition
-- Linting
-- Quick Fixes
-
-The project is setup to recommend lit-plugin to VS Code users if they don't already have it installed.
 
 ## Linting
 
