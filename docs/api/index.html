@@ -5,18 +5,18 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><my-element> ⌲ Docs</title>
+    <title><huss-carousel> ⌲ Docs</title>
     <link rel="stylesheet" href="../docs.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600|Roboto+Mono">
     <link href="../prism-okaidia.css" rel="stylesheet" />
     <script src="/node_modules/@webcomponents/webcomponentsjs/webcomponents-loader.js"></script>
     <script src="/node_modules/lit/polyfill-support.js"></script>
-    <script type="module" src="../my-element.bundled.js"></script>
+    <script type="module" src="../huss-carousel.bundled.js"></script>
   </head>
   <body>
     
 <header>
-  <h1>&lt;my-element></h1>
+  <h1>&lt;huss-carousel></h1>
   <h2>A web component just for me.</h2>
 </header>
     
@@ -31,9 +31,9 @@
         
      <h1>API</h1>
      
-       <h2>&lt;my-element></h2>
+       <h2>&lt;huss-carousel></h2>
        <div>
-         An example element.
+         A carousel for either images or other elements. If you display other elements, the carousel will split them per slide and adjust the number of elements depending on screen size.
        </div>
        
    <h3>Attributes</h3>
@@ -43,11 +43,31 @@
      </tr>
      
        <tr>
-         <td>name</td><td>The name to say "Hello" to.</td><td>string</td><td>'World'</td>
+         <td>variant</td><td>An option telling the carousel that you are displaying either images or other components.</td><td>image | anyContent</td><td></td>
        </tr>
      
        <tr>
-         <td>count</td><td>The number of times the button has been clicked.</td><td>number</td><td>0</td>
+         <td>slideDelay</td><td>How long is one slide displayed.</td><td>number</td><td>'5500'</td>
+       </tr>
+     
+       <tr>
+         <td>autoplay</td><td>Should the carousel start autoplaying.</td><td>boolean</td><td>undefined</td>
+       </tr>
+     
+       <tr>
+         <td>elementsInSlideDesktop</td><td>How many elements should fit in one slide on large screen.</td><td>number</td><td>3</td>
+       </tr>
+     
+       <tr>
+         <td>elementsInSlideTablet</td><td>How many elements should fit in one slide on medium screen.</td><td>number</td><td>2</td>
+       </tr>
+     
+       <tr>
+         <td>elementsInSlideMobile</td><td>How many elements should fit in one slide on small screen.</td><td>number</td><td>1</td>
+       </tr>
+     
+       <tr>
+         <td>shouldHug</td><td>Should the remaining elements on last slide be rendered closely together, rather than laid out with flex.</td><td>boolean</td><td></td>
        </tr>
      
    </table>
@@ -60,11 +80,66 @@
      </tr>
      
        <tr>
-         <td>name</td><td>name</td><td>The name to say "Hello" to.</td><td>string</td><td>'World'</td>
+         <td>_slides</td><td></td><td></td><td>Array<HTMLElement></td><td></td>
        </tr>
      
        <tr>
-         <td>count</td><td>count</td><td>The number of times the button has been clicked.</td><td>number</td><td>0</td>
+         <td>variant</td><td>variant</td><td>An option telling the carousel that you are displaying either images or other components.</td><td>image | anyContent</td><td></td>
+       </tr>
+     
+       <tr>
+         <td>slideDelay</td><td>slideDelay</td><td>How long is one slide displayed.</td><td>number</td><td>'5500'</td>
+       </tr>
+     
+       <tr>
+         <td>autoplay</td><td>autoplay</td><td>Should the carousel start autoplaying.</td><td>boolean</td><td>undefined</td>
+       </tr>
+     
+       <tr>
+         <td>elementsInSlideDesktop</td><td>elementsInSlideDesktop</td><td>How many elements should fit in one slide on large screen.</td><td>number</td><td>3</td>
+       </tr>
+     
+       <tr>
+         <td>elementsInSlideTablet</td><td>elementsInSlideTablet</td><td>How many elements should fit in one slide on medium screen.</td><td>number</td><td>2</td>
+       </tr>
+     
+       <tr>
+         <td>elementsInSlideMobile</td><td>elementsInSlideMobile</td><td>How many elements should fit in one slide on small screen.</td><td>number</td><td>1</td>
+       </tr>
+     
+       <tr>
+         <td>shouldHug</td><td>shouldHug</td><td>Should the remaining elements on last slide be rendered closely together, rather than laid out with flex.</td><td>boolean</td><td></td>
+       </tr>
+     
+       <tr>
+         <td>currentSlide</td><td></td><td></td><td>number</td><td>0</td>
+       </tr>
+     
+       <tr>
+         <td>slidesInternal</td><td></td><td>Keeps injected slides for rerenders.</td><td>Element[]</td><td></td>
+       </tr>
+     
+       <tr>
+         <td>currentRecords</td><td></td><td>Result of splitting slides as per attributes and screen size.</td><td>Array<Element[]></td><td>[]</td>
+       </tr>
+     
+       <tr>
+         <td>sliderInterval</td><td></td><td>Interval for slides' change, driven by slidesDelay value.</td><td>number | void</td><td></td>
+       </tr>
+     
+       <tr>
+         <td>lastSlide</td><td></td><td></td><td>number</td><td>0</td>
+       </tr>
+     
+       <tr>
+         <td>touches</td><td></td><td></td><td>{touchStart: number; touchEnd: number}</td><td>{
+    touchStart: 0,
+    touchEnd: 0,
+  }</td>
+       </tr>
+     
+       <tr>
+         <td>shouldFlexLess</td><td></td><td></td><td></td><td></td>
        </tr>
      
    </table>
@@ -77,7 +152,15 @@
      </tr>
      
        <tr>
-         <td>sayHello</td><td>
+         <td>nextSlideHandler</td><td></td><td></td><td></td>
+       </tr>
+     
+       <tr>
+         <td>previousSlideHandler</td><td></td><td></td><td></td>
+       </tr>
+     
+       <tr>
+         <td>goToSlideHandler</td><td>
    
    <table>
      <tr>
@@ -85,28 +168,16 @@
      </tr>
      
        <tr>
-         <td>name</td><td>The name to say "Hello" to</td><td>string</td>
+         <td>index</td><td></td><td>number</td>
        </tr>
      
    </table>
- </td><td>Formats a greeting</td><td>string</td>
+ </td><td></td><td></td>
        </tr>
      
    </table>
  
-       
-   <h3>Events</h3>
-   <table>
-     <tr>
-       <th>Name</th><th>Description</th>
-     </tr>
-     
-       <tr>
-         <td>count-changed</td><td>Indicates when the count changes</td>
-       </tr>
-     
-   </table>
-     
+           
        
    <h3>Slots</h3>
    <table>
@@ -115,25 +186,81 @@
      </tr>
      
        <tr>
-         <td>(default)</td><td>This element has a slot</td>
+         <td>slides</td><td>Content to be displayed in the carousel.</td>
+       </tr>
+     
+       <tr>
+         <td>playPauseButton</td><td>Expects a button element.</td>
+       </tr>
+     
+       <tr>
+         <td>playStartButton</td><td>Expects a button element.</td>
+       </tr>
+     
+       <tr>
+         <td>nextButton</td><td>Expects a button element.</td>
+       </tr>
+     
+       <tr>
+         <td>prevButton</td><td>Expects a button element.</td>
        </tr>
      
    </table>
    
        
-   <h3>CSS Shadow Parts</h3>
+       
+   <h3>CSS Custom Properties</h3>
    <table>
      <tr>
        <th>Name</th><th>Description</th>
      </tr>
      
        <tr>
-         <td>button</td><td>The button</td>
+         <td>--mobileHeight</td><td>Carousel height on small screens.</td>
+       </tr>
+     
+       <tr>
+         <td>--tabletHeight</td><td>Carousel height on medium screens.</td>
+       </tr>
+     
+       <tr>
+         <td>--desktopHeight</td><td>Carousel height on large screens.</td>
+       </tr>
+     
+       <tr>
+         <td>--dotInlineSize</td><td>Width of dots for carousel navigation.</td>
+       </tr>
+     
+       <tr>
+         <td>--dotBlockSize</td><td>Height of dots for carousel navigation.</td>
+       </tr>
+     
+       <tr>
+         <td>--dotBorderRadius</td><td>Border radius of  dots for carousel navigation.</td>
+       </tr>
+     
+       <tr>
+         <td>--dotColour</td><td>Colour of dots for carousel navigation.</td>
+       </tr>
+     
+       <tr>
+         <td>--activeDotColour</td><td>Active state colour of dots for carousel navigation.</td>
+       </tr>
+     
+       <tr>
+         <td>--focusedDotColour</td><td>Focus state colour of dots for carousel navigation. Renders an outline around the button.</td>
+       </tr>
+     
+       <tr>
+         <td>--hoveredDotColour</td><td>Hover state colour of dots for carousel navigation.</td>
+       </tr>
+     
+       <tr>
+         <td>--carouselBgColour</td><td>Background colour of the whole element</td>
        </tr>
      
    </table>
  
-       
        
    
       </main>

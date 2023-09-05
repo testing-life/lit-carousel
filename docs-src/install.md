@@ -1,16 +1,16 @@
 ---
 layout: page.11ty.cjs
-title: <my-element> ⌲ Install
+title: <huss-carousel> ⌲ Install
 ---
 
 # Install
 
-`<my-element>` is distributed on npm, so you can install it locally or use it via npm CDNs like unpkg.com.
+`<huss-carousel>` is distributed on npm, so you can install it locally or use it via npm CDNs like unpkg.com.
 
 ## Local Installation
 
 ```bash
-npm i my-element
+npm i @m-hussariush/huss-carousel
 ```
 
 ## CDN
@@ -22,11 +22,15 @@ For this element to work from unpkg.com specifically, you need to include the `?
 ### HTML
 
 ```html
-<script type="module" src="https://unpkg.com/my-element?module"></script>
+<script
+  type="module"
+  src="https://unpkg.com/@m-hussariush/huss-carousel@0.0.1/huss-carousel.js?module"
+></script>
 ```
 
 ### JavaScript
 
 ```html
-import {MyElement} from 'https://unpkg.com/my-element?module';
+import {HussCarousel} from
+'https://unpkg.com/@m-hussariush/huss-carousel@0.0.1/huss-carousel.js?module';
 ```
