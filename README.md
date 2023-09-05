@@ -23,7 +23,7 @@ This carousel enables you to display either images or essentially any other type
 
 ## Usage example
 
-`slot="slides"` and `class="huss-carousel__item"` are important.
+`slot="slides"` and `class="huss-carousel__item"` are important for content. Other slots are needed for controls.
 
 ```html
 <huss-carousel variant="anyContent">
