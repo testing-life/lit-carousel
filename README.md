@@ -21,6 +21,20 @@ This carousel enables you to display either images or essentially any other type
 | `elementsInSlideMobile`  | optional | number |                        | How many elements should fit in one slide on small screen.                                                |
 | `shouldHug`              | optional | bool   | boolean attribute      | Should the remaining elements on last slide be rendered closely together, rather than laid out with flex. |
 
+## Styling options
+
+--mobileHeight - Carousel height on small screens.
+--tabletHeight - Carousel height on medium screens.
+--desktopHeight - Carousel height on large screens.
+--dotInlineSize - Width of dots for carousel navigation.
+--dotBlockSize - Height of dots for carousel navigation.
+--dotBorderRadius - Border radius of dots for carousel navigation.
+--dotColour - Colour of dots for carousel navigation.
+--activeDotColour - Active state colour of dots for carousel navigation.
+--focusedDotColour - Focus state colour of dots for carousel navigation. Renders an outline around the button.
+--hoveredDotColour - Hover state colour of dots for carousel navigation.
+--carouselBgColour - Background colour of the whole element
+
 ## Usage example
 
 `slot="slides"` and `class="huss-carousel__item"` are important for content. Other slots are needed for controls.
