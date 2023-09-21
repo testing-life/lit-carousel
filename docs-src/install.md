@@ -24,7 +24,7 @@ For this element to work from unpkg.com specifically, you need to include the `?
 ```html
 <script
   type="module"
-  src="https://unpkg.com/@m-hussariush/huss-carousel@0.0.1/huss-carousel.js?module"
+  src="https://unpkg.com/@m-hussariush/huss-carousel@latest/huss-carousel.js?module"
 ></script>
 ```
 
@@ -32,5 +32,5 @@ For this element to work from unpkg.com specifically, you need to include the `?
 
 ```html
 import {HussCarousel} from
-'https://unpkg.com/@m-hussariush/huss-carousel@0.0.1/huss-carousel.js?module';
+'https://unpkg.com/@m-hussariush/huss-carousel@latest/huss-carousel.js?module';
 ```
