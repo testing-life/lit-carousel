@@ -14,6 +14,34 @@ title: <huss-carousel> ⌲ Home
 
 `<huss-carousel>` is just an HTML element. You can it anywhere you can use HTML!
 
+  <style>
+    /* CSS */
+    .button {
+      background: #5e5df0;
+      border-radius: 999px;
+      box-shadow: #5e5df0 0 10px 20px -10px;
+      box-sizing: border-box;
+      color: #ffffff;
+      cursor: pointer;
+      font-family: Inter, Helvetica, 'Apple Color Emoji', 'Segoe UI Emoji',
+        NotoColorEmoji, 'Noto Color Emoji', 'Segoe UI Symbol', 'Android Emoji',
+        EmojiSymbols, -apple-system, system-ui, 'Segoe UI', Roboto,
+        'Helvetica Neue', 'Noto Sans', sans-serif;
+      font-size: 16px;
+      font-weight: 700;
+      line-height: 24px;
+      opacity: 1;
+      outline: 0 solid transparent;
+      padding: 8px 18px;
+      user-select: none;
+      -webkit-user-select: none;
+      touch-action: manipulation;
+      width: fit-content;
+      word-break: break-word;
+      border: 0;
+    }
+  </style>
+
 ```html
 <huss-carousel>
   <img
@@ -39,10 +67,10 @@ title: <huss-carousel> ⌲ Home
     src="https://upload.wikimedia.org/wikipedia/commons/a/a4/Socrates_Louvre.jpg"
     alt="socrates"
   />
-  <button slot="playPauseButton">||</button>
-  <button slot="playStartButton">></button>
-  <button slot="nextButton">=></button>
-  <button slot="prevButton"><=</button>
+  <button class="button" slot="playPauseButton">||</button>
+  <button class="button" slot="playStartButton">&gt;&gt;</button>
+  <button class="button" slot="nextButton">&gt;</button>
+  <button class="button" slot="prevButton">&lt;</button>
 </huss-carousel>
 ```
 
@@ -73,10 +101,10 @@ title: <huss-carousel> ⌲ Home
     src="https://upload.wikimedia.org/wikipedia/commons/a/a4/Socrates_Louvre.jpg"
     alt="socrates"
   />
-  <button slot="playPauseButton">||</button>
-  <button slot="playStartButton">></button>
-  <button slot="nextButton">=></button>
-  <button slot="prevButton"><=</button>
+  <button class="button" slot="playPauseButton">||</button>
+  <button class="button" slot="playStartButton">&gt;&gt;</button>
+  <button class="button" slot="nextButton">&gt;</button>
+  <button class="button" slot="prevButton">&lt;</button>
 </huss-carousel>
 
   </div>
@@ -114,10 +142,10 @@ title: <huss-carousel> ⌲ Home
     src="https://upload.wikimedia.org/wikipedia/commons/a/a4/Socrates_Louvre.jpg"
     alt="socrates"
   />
-  <button slot="playPauseButton">||</button>
-  <button slot="playStartButton">></button>
-  <button slot="nextButton">=></button>
-  <button slot="prevButton"><=</button>
+  <button class="button" slot="playPauseButton">||</button>
+  <button class="button" slot="playStartButton">&gt;&gt;</button>
+  <button class="button" slot="nextButton">&gt;</button>
+  <button class="button" slot="prevButton">&lt;</button>
 </huss-carousel>
 ```
 
@@ -147,10 +175,10 @@ title: <huss-carousel> ⌲ Home
     src="https://upload.wikimedia.org/wikipedia/commons/a/a4/Socrates_Louvre.jpg"
     alt="socrates"
   />
-<button slot="playPauseButton">||</button>
-<button slot="playStartButton">></button>
-<button slot="nextButton">=></button>
-<button slot="prevButton"><=</button>
+<button class="button" slot="playPauseButton">||</button>
+<button class="button" slot="playStartButton">&gt;&gt;</button>
+<button class="button" slot="nextButton">&gt;</button>
+<button class="button" slot="prevButton">&lt;</button>
 </huss-carousel>
 
   </div>
@@ -195,10 +223,10 @@ render(
         src="https://upload.wikimedia.org/wikipedia/commons/a/a4/Socrates_Louvre.jpg"
         alt="socrates"
       />
-      <button slot="playPauseButton">||</button>
-      <button slot="playStartButton">></button>
-      <button slot="nextButton">=></button>
-      <button slot="prevButton"><=</button>
+      <button class="button" slot="playPauseButton">||</button>
+      <button class="button" slot="playStartButton">&gt;&gt;</button>
+      <button class="button" slot="nextButton">&gt;</button>
+      <button class="button" slot="prevButton">&lt;</button>
     </huss-carousel>
   `,
   document.body
@@ -233,10 +261,10 @@ render(
     src="https://upload.wikimedia.org/wikipedia/commons/a/a4/Socrates_Louvre.jpg"
     alt="socrates"
   />
-  <button slot="playPauseButton">||</button>
-  <button slot="playStartButton">></button>
-  <button slot="nextButton">=></button>
-  <button slot="prevButton"><=</button>
+  <button class="button" slot="playPauseButton">||</button>
+  <button class="button" slot="playStartButton">&gt;&gt;</button>
+  <button class="button" slot="nextButton">&gt;</button>
+  <button class="button" slot="prevButton">&lt;</button>
 </huss-carousel>
 
   </div>
